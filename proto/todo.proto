@@ -1,0 +1,23 @@
+syntax="proto3";
+
+package proto;
+
+option go_package = "github.com/Athla/grpc-impl";
+
+
+message NewMd {
+	string name = 1;
+	string description = 2;
+	bool done = 3;
+}
+
+message Md {
+	string name = 1;
+	string content = 2;
+	bool done = 3;
+	string id = 4;
+}
+
+service MdService {
+	rpc CreateMd(NewMd) returns (Md) {}
+}
