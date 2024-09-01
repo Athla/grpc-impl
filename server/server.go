@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	PORT = ":69420"
+	PORT = ":8080"
 )
 
 type MdServer struct {
@@ -39,8 +39,9 @@ func main() {
 	s := grpc.NewServer()
 
 	pb.RegisterMdServiceServer(s, &MdServer{})
+
 	log.Printf("Server listening at: %v ", lis.Addr())
-	if err != nil {
-		log.Fatalf("Failed to server: %v", err)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("Unable to serve due: %v", err)
 	}
 }
